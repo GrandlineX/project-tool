@@ -10,6 +10,7 @@ enum Features {
   'ESLINT',
   'JEST',
   'TYPEDOC',
+  'INSTALL',
 }
 
 export interface CloneAnswer {
@@ -41,6 +42,60 @@ async function performeClone(answer: CloneAnswer) {
     force: true,
   });
 
+  if (!hasFeature(answer, Features.OPENAPI)) {
+    fs.rmSync(Path.join(projectPath, 'glconf.json'));
+
+    delete scripts.makeSpec;
+    delete scripts.serveSpec;
+  }
+
+  if (!hasFeature(answer, Features.TYPEDOC)) {
+    delete scripts.makeDocs;
+    delete devDependencies.typedoc;
+  }
+
+  if (!hasFeature(answer, Features.JEST)) {
+    fs.rmSync(Path.join(projectPath, 'jest.config.js'));
+
+    fs.rmSync(Path.join(projectPath, 'tests'), {
+      recursive: true,
+      force: true,
+    });
+
+    delete scripts.test;
+    delete scripts['start-dev'];
+    delete scripts['test-coverage'];
+
+    delete devDependencies['eslint-plugin-jest'];
+    delete devDependencies['jest-junit'];
+    delete devDependencies['ts-jest'];
+
+    delete devDependencies.jest;
+    delete devDependencies['@types/jest'];
+  }
+
+  if (!hasFeature(answer, Features.DOCKER)) {
+    fs.rmSync(Path.join(projectPath, 'docker-compose.yml'));
+  }
+
+  if (!hasFeature(answer, Features.ESLINT)) {
+    fs.rmSync(Path.join(projectPath, '.eslintignore'));
+    fs.rmSync(Path.join(projectPath, '.eslintrc'));
+    delete scripts.lint;
+    delete devDependencies.eslint;
+    delete devDependencies['@typescript-eslint/eslint-plugin'];
+    delete devDependencies['@typescript-eslint/parser'];
+    delete devDependencies['eslint-config-airbnb'];
+    delete devDependencies['eslint-config-airbnb-typescript'];
+    delete devDependencies['eslint-config-prettier'];
+    delete devDependencies['eslint-plugin-import'];
+    delete devDependencies['eslint-plugin-jest'];
+    delete devDependencies['eslint-plugin-jsx-a11y'];
+    delete devDependencies['eslint-plugin-prettier'];
+    delete devDependencies['eslint-plugin-react'];
+    delete devDependencies['eslint-plugin-react-hooks'];
+  }
+
   await BaseCommand.runComand('git init', projectPath);
 
   const newConfig = {
@@ -62,8 +117,12 @@ async function performeClone(answer: CloneAnswer) {
   await BaseCommand.runComand('git add .', projectPath);
   await BaseCommand.runComand('git commit -m "init"', projectPath);
 
-  console.log('Create new project was successful');
-  await BaseCommand.runComand('npm install', projectPath);
+  console.log('# Create new project was successful');
+
+  if (hasFeature(answer, Features.INSTALL)) {
+    console.log('# Perform  install');
+    await BaseCommand.runComand('npm install', projectPath);
+  }
 }
 
 export default function Clone() {
@@ -115,6 +174,12 @@ export default function Clone() {
           {
             name: 'Docker - Development DB setup',
             value: Features.DOCKER,
+            checked: true,
+            extra: [],
+          },
+          {
+            name: 'Install after creating project',
+            value: Features.INSTALL,
             checked: true,
             extra: [],
           },
