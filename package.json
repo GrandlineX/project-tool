@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/project-tool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cli for the GrandLineX Project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
