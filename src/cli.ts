@@ -4,7 +4,9 @@
  */
 
 import { checkDeps, HelpText, InvalidCommand, StartInfo } from './utils';
-import { Interactive } from './lib';
+import Interactive from './commands/Interactive';
+import Version from './commands/Version';
+import { checkSelfUpdate } from './commands/Update';
 
 const { argv } = process;
 
@@ -17,20 +19,27 @@ async function main() {
   const optionLength = args.length;
 
   StartInfo();
-  if (!(await checkDeps())) {
-    console.error('# Dependencies not installed');
-    return;
-  }
-  console.log('# All dependencies are installed 🎉');
 
   switch (optionLength) {
     case 1:
       switch (args[0]) {
         case '-i':
+        case '--interactive':
+          await checkSelfUpdate();
+          if (!(await checkDeps())) {
+            console.error('# Dependencies not installed');
+            return;
+          }
+          console.log('# All dependencies are installed 🎉');
           Interactive();
           return;
         case '-h':
+        case '--help':
           HelpText();
+          return;
+        case '-v':
+        case '--version':
+          Version();
           return;
         default:
           break;

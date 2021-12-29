@@ -13,3 +13,5 @@ tsconfig.json
 openapi.yml
 swagger.html
 grandlinex-project
+.ncurc.json
+*.tgz

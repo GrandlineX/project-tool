@@ -1,6 +1,8 @@
+import { getVersion } from '../commands/Version';
+
 function StartInfo(): void {
   const message: string[] = [];
-  message.push('# GrandLineX Project Tool v.1 ⚓');
+  message.push(`# GrandLineX Project Tool v${getVersion()} ⚓`);
   message.push('#');
   console.log(message.join('\n'));
 }
@@ -10,6 +12,7 @@ function HelpText(): void {
   message.push('# Options:');
   message.push('#   -i --interactive : Start Interactive Mode');
   message.push('#   -h --help        : Print this text ');
+  message.push('#   -v --version     : Print the tool version ');
   console.log(message.join('\n'));
 }
 

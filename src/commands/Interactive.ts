@@ -1,12 +1,13 @@
 import inquirer from 'inquirer';
-import { Clone, Update } from '../commands';
+import Update from './Update';
+import Clone from './Clone';
 
 export enum ActionTypes {
   CLONE = 'Create new project',
   UPDATE = 'Update GrandLineX packages',
 }
 
-export default function interactive() {
+export default function Interactive() {
   inquirer
     .prompt([
       {
