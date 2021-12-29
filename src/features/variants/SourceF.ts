@@ -14,13 +14,14 @@ export default class SourceF extends FeatureBase {
 
   async handle(input: FeatureFunc, enabled: boolean): Promise<FeatureFunc> {
     const { projectPath } = input;
-    if (enabled) {
-      fs.cpSync(
-        Path.join(projectPath, 'example.docker-compose.yml'),
-        Path.join(projectPath, 'docker-compose.yml')
-      );
+    if (!enabled) {
+      fs.rmSync(Path.join(projectPath, 'src'), {
+        recursive: true,
+        force: true,
+      });
+      fs.mkdirSync(Path.join(projectPath, 'src'));
     }
-    fs.rmSync(Path.join(projectPath, 'example.docker-compose.yml'));
+
     return input;
   }
 }

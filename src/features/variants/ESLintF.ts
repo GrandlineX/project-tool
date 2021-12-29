@@ -15,7 +15,11 @@ export default class ESLintF extends FeatureBase {
   async handle(input: FeatureFunc, enabled: boolean): Promise<FeatureFunc> {
     if (!enabled) {
       const { projectPath, devDependencies, scripts } = input;
-      fs.rmSync(Path.join(projectPath, '.eslintignore'));
+      try {
+        fs.rmSync(Path.join(projectPath, '.eslintignore'));
+      } catch (e) {
+        console.log('Skip rm .eslintignore');
+      }
       fs.rmSync(Path.join(projectPath, '.eslintrc'));
       delete scripts.lint;
       delete devDependencies.eslint;
