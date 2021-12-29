@@ -10,9 +10,15 @@ function StartInfo(): void {
 function HelpText(): void {
   const message: string[] = [];
   message.push('# Options:');
-  message.push('#   -i --interactive : Start Interactive Mode');
-  message.push('#   -h --help        : Print this text ');
-  message.push('#   -v --version     : Print the tool version ');
+  message.push('#   -i --interactive                 : Start Interactive Mode');
+  message.push('#   -u --update                      : Update GLX-Deps');
+  message.push(
+    '#   -t --template=<electron|express> : Create project from template'
+  );
+  message.push('#   -h --help                        : Print this text ');
+  message.push(
+    '#   -v --version                     : Print the tool version '
+  );
   console.log(message.join('\n'));
 }
 

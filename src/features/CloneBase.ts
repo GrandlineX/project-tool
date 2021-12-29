@@ -41,39 +41,13 @@ export default class CloneBase {
     this.description = conf.description;
   }
 
-  private async performeClone(answer: CloneAnswer): Promise<void> {
-    const { projectName } = answer;
-    const projectPath = Path.join(process.cwd(), projectName);
-
-    if (fs.existsSync(projectPath)) {
-      console.error('Project folder already exist');
-      return;
-    }
-
-    await BaseCommand.runComand(`git clone ${this.baseRepo} ${projectName}`);
-    const pack = fs.readFileSync(
-      Path.join(projectPath, 'package.json'),
-      'utf-8'
-    );
-    const config = JSON.parse(pack);
-    let { scripts, dependencies, devDependencies } = config;
-
-    for (const feature of this.steps) {
-      const ret = await feature.handle(
-        {
-          dependencies,
-          devDependencies,
-          projectName,
-          projectPath,
-          scripts,
-        },
-        CloneBase.hasFeature(answer, feature.value)
-      );
-      scripts = ret.scripts;
-      dependencies = ret.dependencies;
-      devDependencies = ret.devDependencies;
-    }
-
+  private async updateProjectFiles(
+    projectPath: string,
+    projectName: string,
+    scripts: any,
+    dependencies: any,
+    devDependencies: any
+  ) {
     fs.rmSync(Path.join(projectPath, '.git'), {
       recursive: true,
       force: true,
@@ -99,6 +73,70 @@ export default class CloneBase {
 
     await BaseCommand.runComand('git add .', projectPath);
     await BaseCommand.runComand('git commit -m "init"', projectPath);
+  }
+
+  private async getPackageJson(
+    projectPath: string,
+    projectName: string
+  ): Promise<any> {
+    if (fs.existsSync(projectPath)) {
+      console.error('Project folder already exist');
+      return null;
+    }
+
+    await BaseCommand.runComand(`git clone ${this.baseRepo} ${projectName}`);
+    const pack = fs.readFileSync(
+      Path.join(projectPath, 'package.json'),
+      'utf-8'
+    );
+    return JSON.parse(pack);
+  }
+
+  async templateClone(): Promise<void> {
+    const projectName = this.defaultName;
+    const projectPath = Path.join(process.cwd(), projectName);
+
+    const config = await this.getPackageJson(projectPath, projectName);
+    const { scripts, dependencies, devDependencies } = config;
+    await this.updateProjectFiles(
+      projectPath,
+      projectName,
+      scripts,
+      dependencies,
+      devDependencies
+    );
+    await BaseCommand.runComand('npm install', projectPath);
+  }
+
+  private async performeClone(answer: CloneAnswer): Promise<void> {
+    const { projectName } = answer;
+    const projectPath = Path.join(process.cwd(), projectName);
+
+    const config = await this.getPackageJson(projectPath, projectName);
+    let { scripts, dependencies, devDependencies } = config;
+
+    for (const feature of this.steps) {
+      const ret = await feature.handle(
+        {
+          dependencies,
+          devDependencies,
+          projectName,
+          projectPath,
+          scripts,
+        },
+        CloneBase.hasFeature(answer, feature.value)
+      );
+      scripts = ret.scripts;
+      dependencies = ret.dependencies;
+      devDependencies = ret.devDependencies;
+    }
+    await this.updateProjectFiles(
+      projectPath,
+      projectName,
+      scripts,
+      dependencies,
+      devDependencies
+    );
 
     console.log('# Create new project was successful');
     for (const feature of this.steps) {
@@ -128,9 +166,9 @@ export default class CloneBase {
               /**
                * NPM project name RegExp
                */
-              const reg = new RegExp(
-                /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/
-              );
+              const reg =
+                /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/;
+
               if (reg.test(input)) {
                 return true;
               }

@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/project-tool",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Cli for the GrandLineX Project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,6 +18,9 @@
     "lint": "eslint src",
     "interactive": "ts-node src/cli.ts -i",
     "version": "ts-node src/cli.ts -v",
+    "template-express": "ts-node src/cli.ts -t=express",
+    "template-electron": "ts-node src/cli.ts -t=electron",
+    "update": "ts-node src/cli.ts -u",
     "help": "ts-node src/cli.ts -h"
   },
   "author": {
