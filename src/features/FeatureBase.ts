@@ -6,6 +6,7 @@ export enum Features {
   'TYPEDOC',
   'SOURCE',
   'INSTALL',
+  'PIPELINE',
 }
 export interface FeatureStep {
   name: string;

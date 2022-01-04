@@ -15,6 +15,7 @@ const pkgConf: BaseCloneConf = {
     new F.TypeDocF(),
     new F.SourceF(),
     new F.InstallF(),
+    new F.PipeLineF(),
   ],
 };
 
