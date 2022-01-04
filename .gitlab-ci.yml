@@ -1,0 +1,9 @@
+include:
+ - project: 'grandlinex/templates'
+   file: '/stages.yml'   
+ - project: 'grandlinex/templates'
+   file: '/prod/electron-bundle.yml'
+ - project: 'grandlinex/templates'
+   file: '/build/electron-bundle.yml'
+ - project: 'grandlinex/templates'
+   file: '/trigger/worker-docker.yml'
