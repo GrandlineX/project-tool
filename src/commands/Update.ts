@@ -33,7 +33,7 @@ export async function checkSelfUpdate(): Promise<boolean> {
   return false;
 }
 
-export default async function Update() {
+export default async function Update(install: boolean) {
   console.log('# Update GrandLineX packages');
   const updates = await checkUpdate();
   const keys = Object.keys(updates);
@@ -45,6 +45,8 @@ export default async function Update() {
       console.log(`# ${key} + ${updates[key]}`);
     });
 
-    await BaseCommand.runComand('npm install');
+    if (install) {
+      await BaseCommand.runComand('npm install');
+    }
   }
 }

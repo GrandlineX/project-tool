@@ -27,7 +27,11 @@ async function main() {
       switch (args[0]) {
         case '-u':
         case '--update':
-          await Update();
+          await Update(false);
+          return;
+        case '-ui':
+        case '--update-install':
+          await Update(true);
           return;
         case '-t=electron':
         case '--template=electron':

@@ -32,7 +32,7 @@ export default function Interactive() {
           Clone();
           break;
         case ActionTypes.UPDATE:
-          Update();
+          Update(true);
           break;
         default:
           console.log('Error');

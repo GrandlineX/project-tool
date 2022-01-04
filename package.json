@@ -21,6 +21,7 @@
     "template-express": "ts-node src/cli.ts -t=express",
     "template-electron": "ts-node src/cli.ts -t=electron",
     "update": "ts-node src/cli.ts -u",
+    "update-install": "ts-node src/cli.ts -ui",
     "help": "ts-node src/cli.ts -h"
   },
   "author": {
