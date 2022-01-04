@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/project-tool",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Cli for the GrandLineX Project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "buildprep": "tsc",
-    "package": "npm run buildprep && npm pack",
+    "pack": "npm run buildprep && npm pack",
     "lint": "eslint src",
     "interactive": "ts-node src/cli.ts -i",
     "version": "ts-node src/cli.ts -v",
@@ -22,7 +22,8 @@
     "template-electron": "ts-node src/cli.ts -t=electron",
     "update": "ts-node src/cli.ts -u",
     "update-install": "ts-node src/cli.ts -ui",
-    "help": "ts-node src/cli.ts -h"
+    "help": "ts-node src/cli.ts -h",
+    "makeDocs": "echo 'no doc'"
   },
   "author": {
     "name": "Elschnagoo"

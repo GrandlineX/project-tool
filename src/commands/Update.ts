@@ -34,15 +34,16 @@ export async function checkSelfUpdate(): Promise<boolean> {
 }
 
 export default async function Update(install: boolean) {
-  console.log('# Update GrandLineX packages');
+  console.log('### Update GrandLineX packages');
   const updates = await checkUpdate();
   const keys = Object.keys(updates);
   if (keys.length === 0) {
-    console.log('# Anything up to date');
+    console.log('> Anything up to date');
   } else {
-    console.log('# The following packages have been updated');
+    console.log('#### The following packages have been updated:');
+    console.log('----');
     keys.forEach((key) => {
-      console.log(`# ${key} + ${updates[key]}`);
+      console.log(`- ${key} + ${updates[key]}`);
     });
 
     if (install) {

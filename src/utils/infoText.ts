@@ -2,8 +2,8 @@ import { getVersion } from '../commands/Version';
 
 function StartInfo(): void {
   const message: string[] = [];
-  message.push(`# GrandLineX Project Tool v${getVersion()} ⚓`);
-  message.push('#');
+  message.push(`## GrandLineX Project Tool v${getVersion()} ⚓`);
+  message.push('');
   console.log(message.join('\n'));
 }
 
