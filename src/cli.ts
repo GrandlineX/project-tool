@@ -9,6 +9,7 @@ import Version from './commands/Version';
 import Update, { checkSelfUpdate } from './commands/Update';
 import CloneElectron from './commands/CloneElectron';
 import CloneExpress from './commands/CloneExpress';
+import MergeRequest from './commands/MergeRequest';
 
 const { argv } = process;
 
@@ -61,6 +62,12 @@ async function main() {
           return;
         default:
           break;
+      }
+      break;
+    case 9:
+      if (args[0] === '-mr') {
+        await MergeRequest(args);
+        return;
       }
       break;
     case 0:

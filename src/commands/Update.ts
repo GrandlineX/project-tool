@@ -3,6 +3,7 @@ import * as Path from 'path';
 import { Index } from 'npm-check-updates/build/src/types';
 import { BaseCommand } from '../utils';
 import CheckSelfUpdate from './CheckSelfUpdate';
+import PrintLog from '../utils/PrintLog';
 
 async function checkUpdate(): Promise<any> {
   return run({
@@ -33,21 +34,23 @@ export async function checkSelfUpdate(): Promise<boolean> {
   return false;
 }
 
-export default async function Update(install: boolean) {
-  console.log('### Update GrandLineX packages');
+export default async function Update(install: boolean): Promise<string[]> {
+  const cons = new PrintLog();
+  cons.log('### Update GrandLineX packages');
   const updates = await checkUpdate();
   const keys = Object.keys(updates);
   if (keys.length === 0) {
-    console.log('> Anything up to date');
-  } else {
-    console.log('#### The following packages have been updated:');
-    console.log('----');
-    keys.forEach((key) => {
-      console.log(`- ${key} + ${updates[key]}`);
-    });
-
-    if (install) {
-      await BaseCommand.runComand('npm install');
-    }
+    cons.log('> Anything up to date');
+    return [];
   }
+  cons.log('#### The following packages have been updated:');
+  cons.log('----');
+  keys.forEach((key) => {
+    cons.log(`- ${key} + ${updates[key]}`);
+  });
+
+  if (install) {
+    await BaseCommand.runComand('npm install');
+  }
+  return cons.getArr();
 }

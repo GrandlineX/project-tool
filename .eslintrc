@@ -32,6 +32,7 @@
   "rules": {
     "no-console": "off",
     "no-plusplus": "warn",
+    "@typescript-eslint/naming-convention": "warn",
     "no-restricted-syntax": "warn",
     "no-underscore-dangle": "warn",
     "no-await-in-loop": "warn",
