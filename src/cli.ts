@@ -10,6 +10,7 @@ import Update, { checkSelfUpdate } from './commands/Update';
 import CloneElectron from './commands/CloneElectron';
 import CloneExpress from './commands/CloneExpress';
 import MergeRequest from './commands/MergeRequest';
+import PublishConfig from './commands/PublishConfig';
 
 const { argv } = process;
 
@@ -62,6 +63,12 @@ async function main() {
           return;
         default:
           break;
+      }
+      break;
+    case 4:
+      if (args[0] === '-pc' || args[0] === '--publish-config') {
+        PublishConfig(args);
+        return;
       }
       break;
     case 9:
