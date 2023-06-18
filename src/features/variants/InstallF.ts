@@ -1,6 +1,6 @@
-import FeatureBase, { FeatureFunc, Features } from '../FeatureBase';
+import FeatureBase, { FeatureFunc, Features } from '../FeatureBase.js';
 
-import BaseCommand from '../../utils/command/BaseCommand';
+import BaseCommand from '../../utils/command/BaseCommand.js';
 
 export default class InstallF extends FeatureBase {
   constructor() {

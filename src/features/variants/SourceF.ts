@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import Path from 'path';
-import FeatureBase, { FeatureFunc, Features } from '../FeatureBase';
+import FeatureBase, { FeatureFunc, Features } from '../FeatureBase.js';
 
 export default class SourceF extends FeatureBase {
   constructor() {

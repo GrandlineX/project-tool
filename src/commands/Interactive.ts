@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
-import Update from './Update';
-import Clone from './Clone';
+import Update from './Update.js';
+import Clone from './Clone.js';
 
 export enum ActionTypes {
   CLONE = 'Create new project',

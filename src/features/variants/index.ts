@@ -1,19 +1,9 @@
-import DockerF from './DockerF';
-import TypeDocF from './TypeDocF';
-import JestF from './JestF';
-import InstallF from './InstallF';
-import ESLintF from './ESLintF';
-import OpenApiF from './OpenApiF';
-import SourceF from './SourceF';
-import PipeLineF from './PipeLineF';
+import TypeDocF from './TypeDocF.js';
+import JestF from './JestF.js';
+import InstallF from './InstallF.js';
+import ESLintF from './ESLintF.js';
+import OpenApiF from './OpenApiF.js';
+import SourceF from './SourceF.js';
+import PipeLineF from './PipeLineF.js';
 
-export {
-  DockerF,
-  TypeDocF,
-  JestF,
-  InstallF,
-  ESLintF,
-  OpenApiF,
-  SourceF,
-  PipeLineF,
-};
+export { TypeDocF, JestF, InstallF, ESLintF, OpenApiF, SourceF, PipeLineF };

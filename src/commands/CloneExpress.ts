@@ -1,5 +1,5 @@
-import * as F from '../features/variants';
-import CloneBase, { BaseCloneConf } from '../features/CloneBase';
+import * as F from '../features/variants/index.js';
+import CloneBase, { BaseCloneConf } from '../features/CloneBase.js';
 
 const pkgConf: BaseCloneConf = {
   defaultName: 'grandlinex-project',
@@ -9,7 +9,6 @@ const pkgConf: BaseCloneConf = {
   description: 'GrandLineX Express-Skeleton Project',
   steps: [
     new F.ESLintF(),
-    new F.DockerF(),
     new F.JestF(),
     new F.OpenApiF(),
     new F.TypeDocF(),

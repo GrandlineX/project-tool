@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
-import CloneExpress from './CloneExpress';
-import CloneBase from '../features/CloneBase';
-import CloneElectron from './CloneElectron';
+import CloneExpress from './CloneExpress.js';
+import CloneBase from '../features/CloneBase.js';
+import CloneElectron from './CloneElectron.js';
 
 export enum ActionTypes {
   EXPRESS = 'Create Express project',

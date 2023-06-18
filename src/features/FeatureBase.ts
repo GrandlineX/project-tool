@@ -1,6 +1,5 @@
 export enum Features {
   'OPENAPI',
-  'DOCKER',
   'ESLINT',
   'JEST',
   'TYPEDOC',

@@ -3,14 +3,19 @@
  * GrandLineX Cli
  */
 
-import { checkDeps, HelpText, InvalidCommand, StartInfo } from './utils';
-import Interactive from './commands/Interactive';
-import Version from './commands/Version';
-import Update, { checkSelfUpdate } from './commands/Update';
-import CloneElectron from './commands/CloneElectron';
-import CloneExpress from './commands/CloneExpress';
-import MergeRequest from './commands/MergeRequest';
-import PublishConfig from './commands/PublishConfig';
+import {
+  checkDeps,
+  HelpText,
+  InvalidCommand,
+  StartInfo,
+} from './utils/index.js';
+import Interactive from './commands/Interactive.js';
+import Version from './commands/Version.js';
+import Update, { checkSelfUpdate } from './commands/Update.js';
+import CloneElectron from './commands/CloneElectron.js';
+import CloneExpress from './commands/CloneExpress.js';
+import MergeRequest from './commands/MergeRequest.js';
+import PublishConfig from './commands/PublishConfig.js';
 
 const { argv } = process;
 

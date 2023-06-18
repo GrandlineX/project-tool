@@ -1,6 +1,5 @@
 import inquirer from 'inquirer';
-import { Index } from 'npm-check-updates/build/src/types';
-import { BaseCommand } from '../utils';
+import { BaseCommand } from '../utils/index.js';
 
 export enum ActionTypes {
   Update = 'Update now :) ',

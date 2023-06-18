@@ -1,4 +1,4 @@
-import BaseCommand from '../command/BaseCommand';
+import BaseCommand from '../command/BaseCommand.js';
 
 async function checkGit(): Promise<boolean> {
   return BaseCommand.runComand('git --version');

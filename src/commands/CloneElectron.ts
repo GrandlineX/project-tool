@@ -1,5 +1,5 @@
-import CloneBase, { BaseCloneConf } from '../features/CloneBase';
-import * as F from '../features/variants';
+import CloneBase, { BaseCloneConf } from '../features/CloneBase.js';
+import * as F from '../features/variants/index.js';
 
 const pkgConf: BaseCloneConf = {
   defaultName: 'grandlinex-electron-project',

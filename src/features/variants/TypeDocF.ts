@@ -1,4 +1,4 @@
-import FeatureBase, { FeatureFunc, Features } from '../FeatureBase';
+import FeatureBase, { FeatureFunc, Features } from '../FeatureBase.js';
 
 export default class TypeDocF extends FeatureBase {
   constructor() {

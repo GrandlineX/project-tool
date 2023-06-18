@@ -1,8 +1,8 @@
 import inquirer from 'inquirer';
 import Path from 'path';
 import fs from 'fs';
-import FeatureBase, { Features } from './FeatureBase';
-import BaseCommand from '../utils/command/BaseCommand';
+import FeatureBase, { Features } from './FeatureBase.js';
+import BaseCommand from '../utils/command/BaseCommand.js';
 
 export interface CloneAnswer {
   projectName: string;

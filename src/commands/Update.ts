@@ -1,9 +1,9 @@
 import { run } from 'npm-check-updates';
 import * as Path from 'path';
-import { Index } from 'npm-check-updates/build/src/types';
-import { BaseCommand } from '../utils';
-import CheckSelfUpdate from './CheckSelfUpdate';
-import PrintLog from '../utils/PrintLog';
+import { Index } from 'npm-check-updates/build/src/types/IndexType.js';
+import { BaseCommand } from '../utils/index.js';
+import CheckSelfUpdate from './CheckSelfUpdate.js';
+import PrintLog from '../utils/PrintLog.js';
 
 async function checkUpdate(): Promise<any> {
   return run({

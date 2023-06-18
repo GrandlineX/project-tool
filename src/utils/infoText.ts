@@ -1,4 +1,4 @@
-import { getVersion } from '../commands/Version';
+import { getVersion } from '../commands/Version.js';
 
 function StartInfo(): void {
   const message: string[] = [];
