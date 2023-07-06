@@ -12,8 +12,12 @@ function HelpText(): void {
   message.push('# Options:');
   message.push('#   -i --interactive                 : Start Interactive Mode');
   message.push('#   -u --update                      : Update GLX-Deps');
+  message.push('#   -fu --full-update                : Update All-Deps');
   message.push(
     '#   -ui --update-install             : Update & install GLX-Deps'
+  );
+  message.push(
+    '#   -fui --full-update-install       : Update & install All-Deps'
   );
   message.push(
     '#   -t --template=<electron|express> : Create project from template'

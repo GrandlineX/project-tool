@@ -5,11 +5,11 @@ import { BaseCommand } from '../utils/index.js';
 import CheckSelfUpdate from './CheckSelfUpdate.js';
 import PrintLog from '../utils/PrintLog.js';
 
-async function checkUpdate(): Promise<any> {
+async function checkUpdate(full: boolean): Promise<any> {
   return run({
     // Pass any cli option
     packageFile: Path.join(process.cwd(), 'package.json'),
-    filter: /^@grandline/,
+    filter: full ? undefined : /^@grandline/,
     upgrade: true,
     // Defaults:
     // jsonUpgraded: true,
@@ -34,10 +34,13 @@ export async function checkSelfUpdate(): Promise<boolean> {
   return false;
 }
 
-export default async function Update(install: boolean): Promise<string[]> {
+export default async function Update(
+  install = false,
+  full = false
+): Promise<string[]> {
   const cons = new PrintLog();
   cons.log('### Update GrandLineX packages');
-  const updates = await checkUpdate();
+  const updates = await checkUpdate(full);
   const keys = Object.keys(updates);
   if (keys.length === 0) {
     cons.log('> Anything up to date');

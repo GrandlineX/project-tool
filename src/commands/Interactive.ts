@@ -5,6 +5,7 @@ import Clone from './Clone.js';
 export enum ActionTypes {
   CLONE = 'Create new project',
   UPDATE = 'Update GrandLineX packages',
+  UPDATE_ALL = 'Update All packages',
 }
 
 export default function Interactive() {
@@ -23,6 +24,10 @@ export default function Interactive() {
             name: ActionTypes.UPDATE,
             disabled: false,
           },
+          {
+            name: ActionTypes.UPDATE_ALL,
+            disabled: false,
+          },
         ],
       },
     ])
@@ -33,6 +38,9 @@ export default function Interactive() {
           break;
         case ActionTypes.UPDATE:
           Update(true);
+          break;
+        case ActionTypes.UPDATE_ALL:
+          Update(true, true);
           break;
         default:
           console.log('Error');
